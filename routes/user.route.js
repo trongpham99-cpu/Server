@@ -12,9 +12,6 @@ route.post('/register', async (req, res, next)=>{
         if(error){
             throw createError(error.details[0].message)
         }
-        // if(!username || !password){
-        //     throw createError.BadRequest();
-        // }
 
         const isExits = await userModel.findOne({
             username: username
@@ -24,15 +21,37 @@ route.post('/register', async (req, res, next)=>{
             throw createError.Conflict(`${username} is ready been registered`);
         }
 
-        const isCreate = await userModel.create({
-            username: username,
-            password: password
+        const user = new userModel({
+            username,
+            password
         })
+
+        const saveUser = await user.save();
 
         return res.json({
             status: 200,
-            elements: isCreate
+            elements: saveUser
         })
+    } catch (error) {
+        next(error)
+    }
+})
+
+route.post('/login', async (req, res, next)=>{
+    try {
+        const { username, password } = req.body;
+
+        const user = await userModel.findOne({username});
+        if(!user){
+            throw createError.NotFound('User not registered!')
+        }
+
+        const isValid = await user.isCheckPassword(password)
+
+        if(!isValid){
+            throw createError.Unauthorized();
+        }
+        res.send(user)
     } catch (error) {
         next(error)
     }

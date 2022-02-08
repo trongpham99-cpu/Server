@@ -4,10 +4,10 @@
 @contentType = application/json
 GET http://localhost:3001
 ###
-POST http://{{host}}/user/register HTTP/1.1
+POST http://{{host}}/user/login HTTP/1.1
 Content-Type: {{contentType}}
 
 {
-    "username": "admin",
+    "username": "ductrong",
     "password": "123456"
 }
