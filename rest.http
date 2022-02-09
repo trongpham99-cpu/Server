@@ -11,3 +11,9 @@ Content-Type: {{contentType}}
     "username": "ductrong",
     "password": "123456"
 }
+###
+GET http://{{host}}/user/lists
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjAzMmIxMDc5MWY2YTI2OWQzNDg3ZTQiLCJpYXQiOjE2NDQzNzYwMDgsImV4cCI6MTY0NDM3OTYwOH0.VLkQKqNtkzGglLrKrgtciVBDBblunFzx-T9QGHdG4qc
+###
+GET http://{{host}}/user/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjAyODRjM2ZkODI2MWRhODBhOWYwMmUiLCJpYXQiOjE2NDQzNzM5NDAsImV4cCI6MTY0NDM3NzU0MH0.9aAVSFGkToZ1pX65n7ArM19NCXRGJWQSO6q93J0OrGg

@@ -3,15 +3,15 @@ const app = express();
 const createError = require('http-errors')
 require('dotenv').config();
 const userRoute = require('./routes/user.route')
-var bodyParser = require('body-parser')
+const productRoute = require('./routes/product.route')
+const bodyParser = require('body-parser')
 const PORT  = process.env.PORT || 3001;
 const Database = require('./helpers/connections_mongodb')
+const cors = require('cors')
 app.use(bodyParser.json());
-app.get('/', (req, res, next)=>{
-    res.send(`Hello`)
-})
-
+app.use(cors())
 app.use('/user', userRoute)
+app.use('/product', productRoute)
 
 app.use((req, res, next)=>{
     next(createError.NotFound(`This route does not exits`))
